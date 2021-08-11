@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  box-sizing: content-box;
+}
+.emoji-main-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(179.51deg, #9796f0 0.41%, #fbc7d4 128.48%);
+}
+.emoji-card-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.19);
+  box-sizing: border-box;
+  backdrop-filter: blur(20px);
+  border-radius: 12px;
+  width: 70%;
+  height: 70%;
+  padding: 40px;
+  box-sizing: content-box;
+}
+.image-name-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 50%;
+}
+.image-main {
+  width: 200px;
+  height: 206px;
+}
+.emoji-para {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 64px;
+  color: #334155;
+}
+.rules-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+  height: 100%;
+  width: 50%;
+}
+.rules-list {
+  flex-wrap: wrap;
+}
+
+.rules-heading {
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 48px;
+  color: #334155;
+}
+.button {
+  align-self: center;
+}
+.btn {
+  background-color: #334155;
+  color: #ffffff;
+  border-radius: 12px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 12px 24px;
+}

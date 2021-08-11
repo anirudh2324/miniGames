@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+}
+.card-flip-main-container {
+  background-color: #14332e;
+  height: 100vh;
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.card-flip-heading-container {
+  align-self: flex-start;
+  padding: 40px;
+}
+.card-flip-rules {
+  display: flex;
+}
+.card-flip-heading {
+  font-family: Bree Serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 48px;
+  padding: 10px;
+
+  color: #ffffff;
+}
+.card-flip-list-elements {
+  font-family: Bree Serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 32px;
+  color: #ffffff;
+  padding: 5px;
+}
+.card-flip-btn {
+  background: #ffffff;
+  border-radius: 12px;
+  font-family: Bree Serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  border: 0px;
+  /* identical to box height, or 171% */
+
+  color: #223a5f;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 0px 8px;
+}
