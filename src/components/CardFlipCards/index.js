@@ -1,15 +1,18 @@
 import './index.css'
 
 const CardFlipCards = props => {
-  const {emoji, flipTo} = props
+  const {emoji, onClickFlip, onAddFirstCard} = props
   const {id, name, url, faceUp} = emoji
   const onClickCardFlipped = () => {
-    flipTo(id)
+    onClickFlip(id)
+    onAddFirstCard(name, id)
   }
+
   const flip = faceUp ? (
     <img className="card-flip-icon" src={url} alt={name} />
   ) : (
     <img
+      className="card-flip-icon"
       alt="foots"
       src="https://res.cloudinary.com/dxbi2ob2k/image/upload/v1628411563/cardFlip/XMLID_293_xuimte.png"
     />
@@ -23,3 +26,4 @@ const CardFlipCards = props => {
 }
 
 export default CardFlipCards
+
