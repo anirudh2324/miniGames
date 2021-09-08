@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import CardFlipCards from '../CardFlipCards'
+
 import './index.css'
 
 const content = [
@@ -149,28 +150,12 @@ const doubleContent = content.sort(() => Math.random() - 0.5)
 class CardFlipGame extends Component {
   state = {
     cards: doubleContent,
-    firstCard: [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-    ],
+    firstCard: '',
+    secondCard: '',
+    firstId: null,
+    secondId: null,
+    score: 0,
+    cardsFlipCount: 0,
   }
 
   onClickFlip = id => {
@@ -185,40 +170,77 @@ class CardFlipGame extends Component {
     }))
   }
 
-  flipTo = id => {
-    const {cards, firstCard} = this.state
-    const isCardPresent = firstCard.includes(id)
-    console.log(isCardPresent, cards[id])
-
-    if (isCardPresent) {
-      //   this.setState({firstCard: id})
-      this.onClickFlip(id)
+  onAddFirstCard = (name, id) => {
+    const {firstCard, secondCard, firstId, secondId} = this.state
+    if (firstCard === '') {
+      this.setState({firstCard: name, firstId: id})
+      this.setState(prev => ({cardsFlipCount: prev.CardFlipCards + 1}))
+    } else if (secondCard === '') {
+      if (name === firstCard) {
+        this.setState(prev => ({score: prev.score + 1}))
+      }
+      this.setState({secondCard: name, secondId: id})
+      this.setState(prev => ({cardsFlipCount: prev.CardFlipCards + 1}))
     }
-    this.setState(previousState => ({
-      firstCard: [...previousState.firstCard, id],
-    }))
+    if (firstCard !== '' && secondCard !== '') {
+      if (firstCard === secondCard) {
+        this.setState(prevState => ({
+          cards: prevState.cards.map(eachCardItem => {
+            if (id === eachCardItem.id) {
+              const updateFaceUp = true
+              return {...eachCardItem, faceUp: updateFaceUp}
+            }
+            return eachCardItem
+          }),
+        }))
+        this.setState({
+          firstCard: name,
+          secondCard: '',
+          firstId: id,
+          secondId: null,
+        })
+        this.setState(prev => ({cardsFlipCount: prev.CardFlipCards + 1}))
+      } else {
+        this.onClickFlip(firstId)
+        this.onClickFlip(secondId)
+        this.setState({
+          firstCard: name,
+          secondCard: '',
+          firstId: id,
+          secondId: null,
+        })
+        this.setState(prev => ({cardsFlipCount: prev.CardFlipCards + 1}))
+      }
+    }
   }
 
   renderCardFlipList = () => {
     const {cards} = this.state
+
     return (
       <ul className="card-flip-list-container">
         {cards.map(emoji => (
-          <CardFlipCards emoji={emoji} key={emoji.id} flipTo={this.flipTo} />
+          <CardFlipCards
+            emoji={emoji}
+            key={emoji.id}
+            onClickFlip={this.onClickFlip}
+            onAddFirstCard={this.onAddFirstCard}
+          />
         ))}
       </ul>
     )
   }
 
   render() {
+    const {score, cardsFlipCount} = this.state
     return (
       <div className="card-flip-game-container">
         <h1 className="card-flip-game-heading">Card-Flip Memory Game</h1>
         <div className="card-flip-game-body">
           <div className="card-flip-score-content">
-            <p className="card-flip-para">Card Flip Count</p>
+            <p className="card-flip-para">cards Flip Count {cardsFlipCount}</p>
             <p className="card-flip-para">timer</p>
-            <p className="card-flip-para">Score</p>
+            <p className="card-flip-para">Score {score}</p>
           </div>
           {this.renderCardFlipList()}
           {/* /* {isGameOver ? this.renderScoreCard() : */}
@@ -234,3 +256,4 @@ class CardFlipGame extends Component {
 }
 
 export default CardFlipGame
+
